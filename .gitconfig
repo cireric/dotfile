@@ -1,0 +1,28 @@
+[user]
+	email = eric.f.tyc@gmail.com
+	name = cireric
+[color]
+	ui = true
+[alias]
+	s  = status --short
+	st = status
+	co = checkout
+	ci = commit
+	pl = pull
+	ps = push
+	dt = difftool
+	cp = cherry-pick
+	ca = commit -a
+	br = branch
+	unstage = reset HEAD --
+	l  = log --stat
+	last = log -1 HEAD
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[core]
+	editor = vim
+[diff]
+	tool = vimdiff
