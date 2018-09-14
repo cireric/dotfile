@@ -49,7 +49,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew svn z history osx node)
+plugins=(git brew z history osx node tmux ssh svn)
 
 # User configuration
 
@@ -62,6 +62,7 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$JAVA_HOME/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
+# erlang man path: /usr/local/opt/erlang/lib/erlang/man
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,19 +100,18 @@ alias lrt="ls -lrt"
 alias lm="ls -l | more"
 alias vi="vim -p"
 alias svn="/usr/local/bin/svn"
-#alias python="/usr/local/bin/python3"
-alias python="/usr/local/bin/python2.7"
+# alias python="/usr/bin/python"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias grep="grep --color=auto"
 
-alias ssh_local_157="ssh root@192.168.199.157"
+# ssh alias
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" #This loads nvm
 ## use default nodejs
-nvm use v8.5.0
+nvm use v8.9.2
 
 # svn editor
 export SVN_EDITOR=vim

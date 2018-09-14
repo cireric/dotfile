@@ -9,31 +9,45 @@ Plugin 'gmarik/Vundle.vim'
 
 ""Plugin
 
+""" Base
 Plugin 'tpope/vim-sensible'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'sjl/gundo.vim'
+Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'mattn/emmet-vim'
-Plugin 'mileszs/ack.vim'
 Plugin 'benmills/vimux'
+Plugin 'sjl/gundo.vim'
+Plugin 'taglist.vim'
+Plugin 'szw/vim-tags'
 
-"Plugin 'cireric/VimIM'
+"Plugin 'ZSaberLv0/VimIM'
 "Plugin 'ervandew/supertab'
 "Plugin 'dkprice/vim-easygrep'
 "Plugin 'vim-scripts/YankRing.vim'
 "Plugin 'justinmk/vim-sneak'
+"Plugin 'townk/vim-autoclose'
 
 """Language
-Plugin 'cireric/vimerl'
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
+Plugin 'cireric/vimerl'
 Plugin 'lepture/vim-jinja'  "nunjucks syntax hightlighting
+"Plugin 'nginx.vim'
+
+"Plugin 'c.vim'
+"Plugin 'sql.vim--Stinson'
+"Plugin 'wolfgangmehner/lua-support'
+"Plugin 'elixir-lang/vim-elixir'
+"Plugin 'cakebaker/scss-syntax.vim'
+"Plugin 'moll/vim-node'
+"Plugin 'sh.vim'
+"Plugin 'juleswang/css.vim'
 
 """AutoComplete
 Plugin 'Valloric/YouCompleteMe'
@@ -41,9 +55,9 @@ Plugin 'ternjs/tern_for_vim'
 Plugin 'scrooloose/syntastic'
 
 """vim-snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
+Plugin 'tomtom/tlib_vim'
+Plugin 'MarcWeber/vim-addon-mw-utils'
 
 """Markdown
 Plugin 'godlygeek/tabular'
@@ -146,6 +160,9 @@ set t_vb=
 "How many tenths of a second to blink
 set mat=2
 
+" Use ctags
+set exrc
+set secure
 
 """"""""""""""""""""""""""""""
 " => Statusline
@@ -224,7 +241,7 @@ if has("gui_running")
     set background=dark
     set guioptions=aegic
     colorscheme solarized
-    if has('mac') 
+    if has('mac')
         set guifont=Monaco:h14
     endif
     if exists('&macatsui')
@@ -234,19 +251,20 @@ endif
 
 "key map
 "TODO 分MacOS, Linux 快键键
-"map <F2> :NERDTreeToggle<CR>
-map <C-n> :NERDTreeToggle<CR>
-"map <F3> <CR>
-"map <F4> :wall<CR>
+map <F2> :NERDTreeToggle<CR>
+map <F3> :nohlsearch<CR>
+map <F4> :wall<CR>
+nnoremap <F5> :GundoToggle<CR>
 "map <F5> :CtrlPMRUFiles<CR>
 "map <F7> :<CR>
 "map <F9> :nohlsearch<CR>
-map <C-m> :nohlsearch<CR>
+"map <F10> <CR>
+"map <F11> :<CR>
+map <C-n> :NERDTreeToggle<CR>
 map <C-l> :0,$s/\s\+$//<CR>
-"map <F12> :<CR>
+map <C-m> :nohlsearch<CR>
 "map <C-v> "+p<CR>
 "map <C-c> "+y<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin configuration
@@ -317,6 +335,8 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_path_to_python_interpreter="/usr/local/bin/python"
 
 """""""""""""""""""""""""""""""
 " => ack
