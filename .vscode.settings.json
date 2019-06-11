@@ -1,7 +1,13 @@
 {
   "workbench.colorTheme": "Night Owl",
+  "workbench.statusBar.feedback.visible": false,
+  "workbench.sideBar.location": "left",
   "terminal.external.osxExec": "iTerm.app", // 修改vsc的终端为iTerm2
   "window.zoomLevel": 1,
+  "window.title": "${activeEditorMedium}${separator}${rootName}",
+  "npm.enableScriptExplorer": true,
+  "git.autofetch": true,
+  "explorer.autoReveal": false,
   "files.exclude": {
     "**/.circleci": true,
     "**/.github": true,
@@ -11,20 +17,6 @@
     "**/node_modules": true,
     "**/unpackage": true
   },
-  "npm.enableScriptExplorer": true,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "workbench.statusBar.feedback.visible": false,
-  "vetur.validation.template": false,
-  "git.autofetch": true,
-  "workbench.sideBar.location": "left",
 
   "todo-tree.regex": "((//|#|<!--|;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ \\])",
   "todo-tree.revealBehaviour": "highlight todo",
@@ -50,11 +42,6 @@
     }
   },
 
-  "window.title": "${activeEditorMedium}${separator}${rootName}",
-  "explorer.autoReveal": false,
-  "editor.quickSuggestions": {
-    "strings": true
-  },
   "eslint.autoFixOnSave": true, //保存时使用自动格式化
   "eslint.validate": [
     //验证文件类型
@@ -75,9 +62,22 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "html.format.endWithNewline": false,
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 
+  "vetur.validation.template": false,
   "vetur.format.defaultFormatterOptions": {
     "prettier": {
       "semi": true,
