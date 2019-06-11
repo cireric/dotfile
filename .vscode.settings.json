@@ -1,0 +1,94 @@
+{
+  "workbench.colorTheme": "Night Owl",
+  "terminal.external.osxExec": "iTerm.app", // 修改vsc的终端为iTerm2
+  "window.zoomLevel": 1,
+  "files.exclude": {
+    "**/.circleci": true,
+    "**/.github": true,
+    "**/.idea": true,
+    "**/.vscode": true,
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/unpackage": true
+  },
+  "npm.enableScriptExplorer": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.statusBar.feedback.visible": false,
+  "vetur.validation.template": false,
+  "git.autofetch": true,
+  "workbench.sideBar.location": "left",
+
+  "todo-tree.regex": "((//|#|<!--|;|/\\*|^)\\s*($TAGS)|^\\s*- \\[ \\])",
+  "todo-tree.revealBehaviour": "highlight todo",
+  "todo-tree.defaultHighlight": {
+    "icon": "alert",
+    "type": "text",
+    "opacity": 50,
+    "foreground": "white",
+    "background": "red",
+    "iconColour": "blue"
+  },
+  "todo-tree.customHighlight": {
+    "TODO": {
+      "icon": "alert",
+      "iconColour": "blue",
+      "type": "text-and-comment"
+    },
+    "FIXME": {
+      "icon": "check",
+      "type": "text",
+      "foreground": "black",
+      "iconColour": "yellow"
+    }
+  },
+
+  "window.title": "${activeEditorMedium}${separator}${rootName}",
+  "explorer.autoReveal": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "eslint.autoFixOnSave": true, //保存时使用自动格式化
+  "eslint.validate": [
+    //验证文件类型
+    "javascript",
+    "javascriptreact",
+    "vue",
+    "html",
+    "jsx",
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    }
+  ],
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "html.format.endWithNewline": false,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "semi": true,
+      "singleQuote": true
+    },
+    "js-beautify-html": {
+      "wrap_line_length": 120,
+      // "wrap_attributes": "force",
+      "end_with_newline": false
+    }
+  },
+  "vetur.format.defaultFormatter.html": "js-beautify-html"
+}
+

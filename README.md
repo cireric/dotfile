@@ -13,3 +13,6 @@
     * [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
 - nvm - use to manage node's version 
     * [nvm](https://github.com/cnpm/nvm)
+- vscode个人配置文件(.vscode.settings.json)
+    * [vscode](https://code.visualstudio.com/)
+- [开发日常使用工具](https://github.com/cireric/blog/issues/1)

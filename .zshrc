@@ -49,7 +49,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew z history osx node tmux ssh svn)
+plugins=(git brew z history osx node tmux)
 
 # User configuration
 
@@ -100,18 +100,22 @@ alias lrt="ls -lrt"
 alias lm="ls -l | more"
 alias vi="vim -p"
 alias svn="/usr/local/bin/svn"
-# alias python="/usr/bin/python"
+#alias python="/usr/local/bin/python3"
+#alias python="/usr/bin/python"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias grep="grep --color=auto"
 
+##
+#alias fcGrep="ps aux |grep 'node'| grep -v 'tern' | grep -v 'WebStorm' | grep -v 'grep'"
+
 # ssh alias
+#alias ssh_local_157="ssh root@192.168.199.157"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" #This loads nvm
-## use default nodejs
-nvm use v8.9.2
+nvm use v10.5.0 # use default nodejs
 
 # svn editor
 export SVN_EDITOR=vim

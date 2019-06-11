@@ -38,6 +38,7 @@ Plugin 'fatih/vim-go'
 Plugin 'othree/html5.vim'
 Plugin 'cireric/vimerl'
 Plugin 'lepture/vim-jinja'  "nunjucks syntax hightlighting
+Plugin 'posva/vim-vue'
 "Plugin 'nginx.vim'
 
 "Plugin 'c.vim'
@@ -356,4 +357,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+"""""""""""""""""""""""""""""""
+" => vim-vue 
+"""""""""""""""""""""""""""""""
+autocmd FileType vue syntax sync fromstart
 
