@@ -1,42 +1,42 @@
 [user]
-        email = eric.f.tyc@gmail.com
-        name = cireric
+	email = eric.f.tyc@gmail.com
+	name = cireric
 [color]
-        ui = true
+	ui = true
 [alias]
-        s = status -sb
-        st = status
-        co = checkout
-    	cob = checkout -b
-        a = add -p
-        ci = commit
-        cm = commit -m
-        pl = pull
-        pure = pull --rebase
-        ps = push
-    	f = fetch -p
-        dt = difftool
-        cp = cherry-pick
-        ca = commit -a
-        br = branch
-    	ba = branch -a
-    	bd = branch -d
-   	bD = branch -D
-    	dc = diff --cached
-        unstage = reset HEAD --
-        l = log --stat
-        last = log -1 HEAD
-        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	s  = status -sb
+	st = status
+	co = checkout
+    cob = checkout -b
+	a = add -p
+	ci = commit
+	cm = commit -m
+	pl = pull
+	pure = pull --rebase
+	ps = push
+    f = fetch -p
+	dt = difftool
+	cp = cherry-pick
+	ca = commit -a
+	br = branch
+    ba = branch -a
+    bd = branch -d
+    bD = branch -D
+    dc = diff --cached
+	unstage = reset HEAD --
+	l  = log --stat
+	last = log -1 HEAD
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     plog = log --graph --pretty='format:%C(red)%d%C(reset) %C(yellow)%h%C(reset) %ar %C(green)%aN%C(reset) %s'
     tlog = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
-        rank = shortlog -sn --no-merges
-        confall = config --global --list
+	rank = shortlog -sn --no-merges
+	confall = config --global --list
     bdm = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
 [filter "lfs"]
-        clean = git-lfs clean %f
-        smudge = git-lfs smudge %f
-        required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
 [core]
-        editor = vim
+	editor = vim
 [diff]
-        tool = vimdiff
+	tool = vimdiff

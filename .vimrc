@@ -220,7 +220,7 @@ set fileencodings=utf-8,gb18030,big5
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Other Options
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set completeopt=menuone,preview
+"set completeopt=menuone,preview
 set fileformat=unix
 set fileformats=unix,dos,mac
 set foldenable
@@ -325,7 +325,8 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "nmap <F4> :YcmDiags<CR>
 
 " 自动补全配置
-set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+"set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+set completeopt=menu,menuone
 let g:ycm_collect_identifiers_from_tags_files=1	" 开启 YCM 基于标签引擎
 let g:ycm_cache_omnifunc=0	" 禁止缓存匹配项,每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax=1	" 语法关键字补全
@@ -335,9 +336,20 @@ let g:ycm_complete_in_comments = 1
 "在字符串输入中也能补全
 let g:ycm_complete_in_strings = 1
 "注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-"let g:ycm_server_python_interpreter = '/usr/bin/python'
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_path_to_python_interpreter="/usr/local/bin/python"
+
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_key_invoke_completion = '<c-z>'
+
+noremap <c-z> <NOP>
+let g:ycm_semantic_triggers =  {
+           \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+           \ 'cs,lua,javascript': ['re!\w{2}'],
+           \ }
 
 """""""""""""""""""""""""""""""
 " => ack

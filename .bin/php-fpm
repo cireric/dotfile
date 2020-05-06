@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+# 开启 php-fpm
+php-fpm -p /usr/local/var -y /usr/local/etc/php/7.0/php-fpm.conf >/dev/null 2>&1 &
+
+# 开启nginx服务器
+# nginx
