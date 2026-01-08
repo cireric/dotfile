@@ -1,0 +1,75 @@
+# continue.dev 配置文件
+name: DeepSeek Assistant
+version: 1.0.0
+schema: v1
+
+models:
+  # DeepSeek 聊天和代码理解模型
+  - name: DeepSeek-Chat
+    provider: deepseek
+    model: deepseek-chat      # 使用 DeepSeek 聊天推理模型
+    apiKey: <DEEPSEEK-API-KEY>  # 请在 VS Code 插件 secrets 中配置你的 API Key
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      contextLength: 128000   # 尽量使用大 context 以增强代码理解能力
+      maxTokens: 4096
+      temperature: 0.1        # 偏向确定性输出，有助于编程任务
+      topP: 0.95
+    # 若需要 DeepSeek 能调用函数或外部工具，可手动启用 tool_use
+    capabilities:
+      - tool_use
+
+  # DeepSeek 专用的补全模型
+  - name: DeepSeek-Coder
+    provider: deepseek
+    model: deepseek-coder     # 使用 DeepSeek 专门的代码生成模型
+    apiKey: <DEEPSEEK-API-KEY>
+    roles:
+      - autocomplete          # 自动补全
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      contextLength: 128000
+      maxTokens: 4096         # 允许更长的生成，提高补全质量
+      temperature: 0.1        # 更保守，减少无关生成
+
+  # 可选：辅助较轻量级模型，用于替代场景（如快速建议）
+  - name: Fallback-Small
+    provider: openai
+    model: gpt-3.5-turbo
+    roles:
+      - chat
+      - autocomplete
+    defaultCompletionOptions:
+      contextLength: 8192
+      maxTokens: 1024
+      temperature: 0.5
+
+# 上下文提供者，让模型能理解项目代码
+context:
+  - provider: code       # 整个代码库
+  - provider: diff       # 当前 diff 变更
+  - provider: file       # 当前文件内容
+  - provider: folder     # 当前文件夹结构
+
+# 规则（可选）：比如统一输出风格、注释风格等
+# rules:
+#   - uses: rules/deepseek-coding.md
+
+# 自定义快速提示（可选）
+prompts:
+  - name: Explain Code
+    description: Generate a clear explanation of the selected code block.
+    prompt: |
+      Given the selected code below, provide a concise explanation of what it does and any potential pitfalls.
+
+# 如有额外工具或服务（比如本地 MCP server）
+# mcpServers:
+  # 可在本地运行的服务配置示例
+  # - name: LocalToolServer
+  #   command: npm
+  #   args: ["run", "dev"]
