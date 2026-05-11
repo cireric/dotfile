@@ -1,0 +1,461 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // system model (default model)
+  "model": "deepseek/deepseek-v4-flash",
+
+  // MCP server
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "enabled": false
+    }
+
+    // vision
+  },
+
+  // 加载插件
+  "plugin": [
+    "oh-my-openagent@latest"
+    //"oh-my-openagent@3.17.15"
+    //"superpowers@git+https://github.com/obra/superpowers.git"
+  ],
+
+  // 提供商
+  "provider": {
+
+    // ==========  讯飞星辰 Coding Plan  ==========
+    "AstronCodingPlan": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Astron Coding Plan",
+      "options": {
+        "baseURL": "https://maas-coding-api.cn-huabei-1.xf-yun.com/v2",
+        "apiKey": "{env:XFYUN_API_KEY}"
+      },
+      "models": {
+        "astron-code-latest": {
+          "id": "astron-code-latest",
+          "name": "Astron Coding Plan",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 4096,
+            "context": 262144
+          }
+        }
+      }
+    },
+
+    // ==========  DeepSeek 官方 ==========
+    "deepseek": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DeepSeek",
+      "options": {
+        "baseURL": "https://api.deepseek.com/v1",
+        "apiKey": "{env:DEEPSEEK_API_KEY}"
+      },
+      "models": {
+        "deepseek-v4-flash": {
+          "id": "deepseek-v4-flash",
+          "name": "DeepSeek-V4-Flash",
+          "limit": {
+            // 上下文窗口大小
+            "context": 1048576,
+            // 最大输出 token 数
+            "output": 262144
+          },
+          "options": {
+            // 设置推理强度为 max
+            "reasoningEffort": "max",
+            //"reasoningEffort": "high",
+            // 启用思考模式
+            "thinking": {
+              "type": "enabled"
+              //"type": "disabled"
+            }
+          }
+        },
+
+        "deepseek-v4-pro": {
+          "id": "deepseek-v4-pro",
+          "name": "DeepSeek-V4-Pro",
+          "limit": {
+            // 上下文窗口大小
+            "context": 1048576,
+            // 最大输出 token 数
+            "output": 262144
+          },
+          "options": {
+            // 设置推理强度为 max
+            "reasoningEffort": "max",
+            // 启用思考模式
+            "thinking": {
+              "type": "enabled"
+            }
+          }
+        }
+      }
+    },
+
+    // ========== 智谱AI ==========
+    "zhipuai": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "智谱AI",
+      "options": {
+        "baseURL": "https://open.bigmodel.cn/api/paas/v4",
+        "apiKey": "{env:ZHIPU_API_KEY}"
+      },
+      "models": {
+        // 免费，但容易触发限流
+        // 要控制频率
+        "glm-4.7-flash": {
+          "id": "glm-4.7-flash",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        },
+        // 视觉识别模型
+        "glm-4.6v": {
+          "id": "glm-4.6v",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        },
+        "glm-4.6v-flash": {
+          "id": "glm-4.6v-flash",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        }
+      }
+    },
+
+    // ========== 阿里云百炼 ==========
+    "alibaba-cn": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "阿里云百炼",
+      "options": {
+        "baseURL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "{env:DASHSCOPE_API_KEY}"
+      },
+      "models": {
+        "qwen3.6-plus": {
+          "id": "qwen3.6-plus",
+          "contextWindow": 131072,
+          "maxTokens": 8192,
+          "supportsVision": true
+        },
+        "qwen3.5-plus": {
+          "id": "qwen3.5-plus",
+          "contextWindow": 1000000,
+          "maxTokens": 8192,
+          "supportsVision": true
+        },
+        "kimi-k2.5": {
+          "id": "kimi-k2.5",
+          "contextWindow": 131072,
+          "maxTokens": 8192,
+          "supportsVision": true
+        },
+        "glm-5": {
+          "id": "glm-5",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        },
+        "glm-5.1": {
+          "id": "glm-5.1",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        },
+
+        "kimi-k2.6": {
+          "id": "kimi-k2.6",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        },
+
+        "glm-4.7": {
+          "id": "glm-4.7",
+          "maxTokens": 8192,
+          "reasoning": true
+        },
+        "glm-4.6": {
+          "id": "glm-4.6",
+          "maxTokens": 8192,
+          "reasoning": true
+        },
+        "glm-4.5": {
+          "id": "glm-4.5",
+          "maxTokens": 8192, 
+          "reasoning": true
+        },
+
+        "qwen3.6-max-preview": {
+          "id": "qwen3.6-max-preview",
+          "contextWindow": 65536,
+          "maxTokens": 8192,
+          "reasoning": true
+        },
+        "qwen3.6-flash": {
+          "id": "qwen3.6-flash",
+          "contextWindow": 65536,
+          "maxTokens": 8192,
+          "reasoning": true
+        },
+
+        "qwen3-vl-plus-2025-09-23": {
+          "id": "qwen3-vl-plus-2025-09-23",
+          "contextWindow": 65536,
+          "maxTokens": 8192,
+          "reasoning": true
+        },
+        "qwen3-vl-plus-2025-12-19": {
+          "id": "qwen3-vl-plus-2025-12-19",
+          "contextWindow": 65536,
+          "maxTokens": 8192,
+          "reasoning": true
+        },
+        "qwen3-vl-235b-a22b-instruct": {
+          "id": "qwen3-vl-235b-a22b-instruct",
+          "contextWindow": 65536,
+          "maxTokens": 8192,
+          "reasoning": true
+        }
+      }
+    },
+
+    // ========== MiniMax 官方  ==========
+    "minimax-cn": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "MiniMax",
+      "options": {
+        "baseURL": "https://api.minimaxi.com/v1",
+        "apiKey": "{env:MINIMAX_API_KEY}"
+      },
+      "models": {
+        "MiniMax-M2.7": {
+          "id": "MiniMax-M2.7",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        },
+        "MiniMax-M2.5": {
+          "id": "MiniMax-M2.5",
+          "contextWindow": 131072,
+          "maxTokens": 8192
+        }
+      }
+    },
+
+    // ========== ModelScope 魔塔社区 ==========
+    "modelscope": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "ModelScope",
+      "options": {
+        "baseURL": "https://api-inference.modelscope.cn/v1",
+        "apiKey": "{env:MODELSCOPE_API_KEY}"
+      },
+
+      "models": {
+        // deepseek
+        "deepseek-ai/DeepSeek-V4-Flash": {
+          "id": "deepseek-ai/DeepSeek-V4-Flash",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 8192,
+            "context": 1000000
+          }
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "id": "deepseek-ai/DeepSeek-V4-Pro",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 8192,
+            "context": 1000000
+          }
+        },
+        "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B": {
+          "id": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 8192,
+            "context": 128000
+          }
+        },
+
+        // 智谱AI
+        "ZhipuAI/GLM-5.1": {
+          "id": "ZhipuAI/GLM-5.1",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 8192,
+            "context": 200000
+          }
+        },
+        "ZhipuAI/GLM-5": {
+          "id": "ZhipuAI/GLM-5",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 8192,
+            "context": 200000
+          }
+        },
+        "ZhipuAI/GLM-4.7-Flash": {
+          "id": "ZhipuAI/GLM-4.7-Flash",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 8192,
+            "context": 200000
+          }
+        },
+
+        // MiniMax
+        "MiniMax/MiniMax-M2.5": {
+          "id": "MiniMax/MiniMax-M2.5",
+          "maxOutputTokens": 8192,
+          "limit": {
+            "output": 4096,
+            "context": 262144
+          }
+        },
+
+        // Kimi
+        "moonshotai/Kimi-K2.5": {
+          "id": "moonshotai/Kimi-K2.5",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+
+        // Qwen
+        "Qwen/Qwen3.5-397B-A17B": {
+          "id": "Qwen/Qwen3.5-397B-A17B",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "Qwen/Qwen3-Coder-480B-A35B-Instruct": {
+          "id": "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          }
+        },
+        "Qwen/Qwen3.5-122B-A10B": {
+          "id": "Qwen/Qwen3.5-122B-A10B",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "Qwen/Qwen3.5-35B-A3B": {
+          "id": "Qwen/Qwen3.5-35B-A3B",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "Qwen/Qwen3-235B-A22B": {
+          "id": "Qwen/Qwen3-235B-A22B",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "Qwen/Qwen3-235B-A22B-Instruct-2507": {
+          "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+        "Qwen/Qwen3-VL-235B-A22B-Instruct": {
+          "id": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          },
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          }
+        },
+
+        // Ling (蚂蚁金服）
+        "inclusionAI/Ling-2.6-1T": {
+          "id": "inclusionAI/Ling-2.6-1T",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          }
+        },
+        "inclusionAI/Ling-2.6-flash": {
+          "id": "inclusionAI/Ling-2.6-flash",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          }
+        }
+      }
+    },
+
+    // ========== OpenRouter 官方 ==========
+    "openrouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "ModelScope",
+      "options": {
+        "baseURL": "https://openrouter.ai/api/v1",
+        "apiKey": "{env:OPENROUTER_API_KEY}"
+      },
+      "models": {
+        "tencent/hy3-preview:free": {
+          "id": "tencent/hy3-preview:free",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          }
+        },
+        "minimax/minimax-m2.5:free": {
+          "id": "minimax/minimax-m2.5:free",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          }
+        },
+        "openai/gpt-oss-120b:free": {
+          "id": "openai/gpt-oss-120b:free",
+          "limit": {
+            "output": 8192,
+            "context": 262144
+          }
+        }
+      }
+    }
+  }
+}

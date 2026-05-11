@@ -13,7 +13,8 @@ models:
       - edit
       - apply
     defaultCompletionOptions:
-      contextLength: 32768 maxTokens: 4096
+      contextLength: 32768
+      maxTokens: 4096
       temperature: 0.15    # 偏向确定性输出，有助于编程任务
       topP: 0.95
 
