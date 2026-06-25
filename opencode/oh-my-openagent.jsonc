@@ -8,9 +8,14 @@
     // 主编排器/Agent规划师，理解需求，制定计划，并调度其他 Agent 完成任务
     "sisyphus": {
       "model": "AstronCodingPlan/astron-code-latest",
+      //"model":"AstronCodingPlan/xopkimik26",
       "fallback_models": [
-        // 2026.05/2026.06 还有20元额度(截止2026.07.13)
-        //"alibaba-cn/kimi-k2.5",
+        "AstronCodingPlan/xopglm51",
+        "AstronCodingPlan/xopkimik26",
+        "AstronCodingPlan/xopglm5",
+        "AstronCodingPlan/astron-code-latest",
+
+        "opencode/deepseek-v4-flash-free",
 
         "deepseek/deepseek-v4-flash",
         "deepseek/deepseek-v4-pro"
@@ -26,10 +31,8 @@
     "prometheus": {
       "model": "AstronCodingPlan/astron-code-latest",
       "fallback_models": [
-        //"alibaba-cn/kimi-k2.6",
-        //"alibaba-cn/kimi-k2.5",
-        //"alibaba-cn/glm-5",
-        //"alibaba-cn/glm-5.1",
+        "AstronCodingPlan/xopglm51",
+        "AstronCodingPlan/xopkimik26",
 
         //"deepseek/deepseek-v4-flash"
         "deepseek/deepseek-v4-pro"
@@ -45,10 +48,12 @@
     "atlas": {
       "model": "AstronCodingPlan/astron-code-latest",
       "fallback_models": [
-        //"alibaba-cn/qwen3.5-plus"
+        "AstronCodingPlan/xopglm51",
+        "AstronCodingPlan/xopkimik26",
+        "AstronCodingPlan/xopglm5",
 
-        "deepseek/deepseek-v4-flash"
-        //"deepseek/deepseek-v4-pro"
+        "deepseek/deepseek-v4-flash",
+        "deepseek/deepseek-v4-pro"
       ],
       "temperature": 0.1,
       "variant": "max",
@@ -57,6 +62,7 @@
     },
 
     // 自主深度工作者，端到端独立执行复杂编码任务(default GPT)
+    // 当前没有使用GPT，已禁用
     "hephaestus": {
       "model": "AstronCodingPlan/astron-code-latest",
       "fallback_models": [
@@ -70,45 +76,18 @@
     // Architecture consultant 
     // 只读 高智商顾问，用于架构决策和复杂调试
     "oracle": {
-      "model": "modelscope/deepseek-ai/DeepSeek-V4-Pro",
-      //"model": "modelscope/ZhipuAI/GLM-5.1",
-      "variant": "max",
+      "model": "AstronCodingPlan/astron-code-latest",
+      //"variant": "max",
       "fallback_models": [
-        "modelscope/ZhipuAI/GLM-5",
+        //"modelscope/deepseek-ai/DeepSeek-V4-Pro",
+        "modelscope/ZhipuAI/GLM-5.1",
         "modelscope/inclusionAI/Ling-2.6-1T",
-
-        //"alibaba-cn/kimi-k2.5",
-        //"alibaba-cn/glm-5",
-
-        "AstronCodingPlan/astron-code-latest",
 
         // PRO用于架构分析
         "deepseek/deepseek-v4-pro"
       ],
       "temperature": 0.1,
       "prompt_append": "\nCRITICAL INSTRUCTION: When reviewing technical documents, code, or making factual claims, you MUST use librarian or websearch tools to verify information against authoritative sources (official documentation, GitHub repos, API specs). NEVER rely solely on internal knowledge for version numbers, API capabilities, or technical specifications. Always cite sources for factual claims."
-    },
-
-    // Research and documentation
-    // 多仓库分析/文档查询/开源代码搜索
-    "librarian": {
-      //"model": "alibaba-cn/qwen3.6-flash",
-      //"model": "alibaba-cn/qwen3.6-max-preview",
-      //"model": "minimax-cn/MiniMax-M2.7",
-
-      "model": "opencode/big-pickle",
-      "fallback_models": [
-        //"alibaba-cn/kimi-k2.5",
-
-        "openrouter/tencent/hy3-preview:free",
-
-        "opencode/hy3-preview-free",
-
-        "AstronCodingPlan/astron-code-latest",
-
-        "deepseek/deepseek-v4-flash"
-      ],
-      "temperature": 0.1
     },
 
     // Critic: challenges assumptions
@@ -132,9 +111,6 @@
         "modelscope/moonshotai/Kimi-K2.5",
         "modelscope/ZhipuAI/GLM-5",
 
-        //"alibaba-cn/glm-5",
-        //"alibaba-cn/kimi-k2.5",
-
         "deepseek/deepseek-v4-pro"
       ],
       "temperature": 0.1,
@@ -144,57 +120,69 @@
     // Exploration for research phase
     // 代码库探索 Explore：使用免费模型，高频任务
     "explore": {
-      //"model": "alibaba-cn/glm-4.5",
-      //"model": "alibaba-cn/glm-4.6",
-      //"model": "alibaba-cn/glm-4.7",
-      
-      "model": "opencode/minimax-m2.5-free",
+      "model": "opencode/big-pickle",
       "fallback_models": [
         "openrouter/openai/gpt-oss-120b:free",
+        "modelscope/MiniMax/MiniMax-M2.5",
 
-        "modelscope/ZhipuAI/GLM-4.7-Flash",
-
-        "zhipuai/glm-4.7-flash",
-
-        "modelscope/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B",
+        "AstronCodingPlan/xminimaxm25",
 
         "deepseek/deepseek-v4-flash"
       ],
       "temperature": 0.3
     },
 
+    // Research and documentation
+    // 多仓库分析/文档查询/开源代码搜索
+    "librarian": {
+      "model": "opencode/big-pickle",
+      "fallback_models": [
+        "modelscope/MiniMax/MiniMax-M2.5",
+
+        "openrouter/openai/gpt-oss-120b:free",
+
+        "AstronCodingPlan/xminimaxm25",
+
+        "deepseek/deepseek-v4-flash"
+      ],
+      "temperature": 0.1
+    },
+
     // Visual planning and diagrams
     "multimodal-looker": {
-      "model": "zhipuai/glm-4.6v",
-      //"model": "alibaba-cn/qwen3-vl-plus-2025-09-23",
+      "model": "AstronCodingPlan/xopkimik26",
       "fallback_models": [
-        "alibaba-cn/qwen3-vl-plus-2025-12-19",
-        "alibaba-cn/qwen3-vl-235b-a22b-instruct",
-
-        "modelscope/Qwen/Qwen3-VL-235B-A22B-Instruct",
         "modelscope/moonshotai/Kimi-K2.5"
-
-        //"alibaba-cn/kimi-k2.5"
-        //"alibaba-cn/qwen3.5-plus"
       ],
       "temperature": 0.5
     },
 
     // Quick research tasks
     "sisyphus-junior": {
-      "model": "modelscope/Qwen/Qwen3-Coder-480B-A35B-Instruct",
+      "model": "modelscope/Qwen/Qwen3.5-397B-A17B",
+      //"model": "AstronCodingPlan/xminimaxm25",
       "fallback_models": [
-        "modelscope/Qwen/Qwen3.5-397B-A17B",
         "modelscope/inclusionAI/Ling-2.6-flash",
-        "modelscope/Qwen/Qwen3.5-122B-A10B",
 
         "opencode/big-pickle",
+
+        "modelscope/Qwen/Qwen3.5-122B-A10B",
 
         "AstronCodingPlan/astron-code-latest",
 
         "deepseek/deepseek-v4-flash"
       ],
       "temperature": 0.1
+    },
+
+    // Researcher
+    "researcher": {
+      "model": "AstronCodingPlan/astron-code-latest",
+      "fallback_models": [
+        "AstronCodingPlan/xopglm51",
+        "deepseek/deepseek-v4-pro"
+      ],
+      "temperature": 0.3
     }
   },
 
@@ -202,50 +190,40 @@
     // 前端/UI/UX
     // TODO: 暂时使用魔塔的免费模型识别图片
     "visual-engineering": {
-      "model": "modelscope/Qwen/Qwen3.5-35B-A3B",
+      "model": "AstronCodingPlan/xopkimik26",
       "fallback_models": [
-        "modelscope/Qwen/Qwen3-VL-235B-A22B-Instruct",
-        "modelscope/moonshotai/Kimi-K2.5"
+        "modelscope/moonshotai/Kimi-K2.5",
+        "modelscope/Qwen/Qwen3-VL-235B-A22B-Instruct"
       ],
       "temperature": 0.4
     },
 
     // 通用任务 - 不属于其他类别的综合型任务
     "general": {
-      "model": "AstronCodingPlan/astron-code-latest",
+      "model": "opencode/big-pickle",
       "fallback_models": [
+        "AstronCodingPlan/xopglm5",
+        "AstronCodingPlan/astron-code-latest",
         "deepseek/deepseek-v4-flash"
-      ],
-      "temperature": 0.5
-    },
-
-    // 深度推理任务
-    "ultrabrain": {
-      "model": "AstronCodingPlan/astron-code-latest",
-      "fallback_models": [
-        //"alibaba-cn/kimi-k2.5",
-        //"alibaba-cn/qwen3.5-plus",
-        //"alibaba-cn/glm-5",
-
-        "deepseek/deepseek-v4-flash",
-        "deepseek/deepseek-v4-pro"
       ],
       "temperature": 0.5
     },
 
     // 简单任务
     "quick": {
-      "model": "openrouter/minimax/minimax-m2.5:free",
+      //"model": "AstronCodingPlan/astron-code-latest",
+      "model": "opencode/deepseek-v4-flash-free",
       "fallback_models": [
-        "opencode/minimax-m2.5-free",
+        //"modelscope/Qwen/Qwen3.5-397B-A17B",
+        //"modelscope/Qwen/Qwen3-Coder-480B-A35B-Instruct",
 
-        "modelscope/Qwen/Qwen3-Coder-480B-A35B-Instruct",
+        "modelscope/inclusionAI/Ling-2.6-flash",
 
-        "openrouter/openai/gpt-oss-120b:free",
+        "opencode/big-pickle",
 
-        "modelscope/Qwen/Qwen3.5-397B-A17B",
-
-        "modelscope/MiniMax/MiniMax-M2.5",
+        "AstronCodingPlan/xopqwen35397b",
+        "AstronCodingPlan/xopkimik25",
+        "AstronCodingPlan/xminimaxm25",
 
         "AstronCodingPlan/astron-code-latest",
 
@@ -255,10 +233,14 @@
     },
 
     "deep": {
-      "model": "AstronCodingPlan/astron-code-latest",
+      "model": "AstronCodingPlan/xopkimik26",
       "fallback_models": [
-        "modelscope/deepseek-ai/DeepSeek-V4-Flash",
+        "AstronCodingPlan/xopglm51",
+
+        //"modelscope/deepseek-ai/DeepSeek-V4-Flash",
         "modelscope/moonshotai/Kimi-K2.5",
+
+        "AstronCodingPlan/astron-code-latest",
 
         "deepseek/deepseek-v4-flash",
         "deepseek/deepseek-v4-pro"
@@ -266,15 +248,25 @@
       "temperature": 0.1
     },
 
+    // 深度推理任务
+    "ultrabrain": {
+      "model": "AstronCodingPlan/xopkimik26",
+      "fallback_models": [
+        "AstronCodingPlan/xopglm51",
+        "AstronCodingPlan/astron-code-latest",
+
+        "deepseek/deepseek-v4-pro"
+      ],
+      "temperature": 0.5
+    },
+
     // General tasks, low effort
     "unspecified-low": {
-      "model": "modelscope/deepseek-ai/DeepSeek-V4-Flash",
+      "model": "AstronCodingPlan/xopkimik25",
       "fallback_models": [
-        "openrouter/minimax/minimax-m2.5:free",
-
-        "opencode/minimax-m2.5-free",
-
-        "opencode/hy3-preview-free",
+        //"modelscope/deepseek-ai/DeepSeek-V4-Flash",
+        "opencode/deepseek-v4-flash-free",
+        "AstronCodingPlan/xminimaxm25",
 
         "deepseek/deepseek-v4-flash"
       ],
@@ -283,12 +275,11 @@
 
     // General tasks, high effort
     "unspecified-high": {
-      "model": "modelscope/moonshotai/Kimi-K2.5",
+      "model": "AstronCodingPlan/astron-code-latest",
       "fallback_models": [
-        "modelscope/deepseek-ai/DeepSeek-V4-Pro",
-
-        "AstronCodingPlan/astron-code-latest",
-
+        "AstronCodingPlan/xopglm51",
+        "AstronCodingPlan/xopkimik26",
+        //"modelscope/deepseek-ai/DeepSeek-V4-Pro",
         "deepseek/deepseek-v4-pro"
       ],
       "temperature": 0.2
@@ -296,12 +287,8 @@
 
     // Creative/unconventional approaches
     "artistry": {
-      "model": "alibaba-cn/qwen3-vl-235b-a22b-instruct",
+      "model": "AstronCodingPlan/xopkimik26",
       "fallback_models": [
-        //"alibaba-cn/kimi-k2.5",
-        //"alibaba-cn/qwen3.5-plus",
-        //"alibaba-cn/glm-5"
-
         "modelscope/moonshotai/Kimi-K2.5"
       ],
       "temperature": 0.4
@@ -309,10 +296,8 @@
 
     // 文档撰写与文本生成 - 使用快速模型降低成本
     "writing": {
-      "model": "opencode/minimax-m2.5-free",
+      "model": "AstronCodingPlan/xminimaxm25",
       "fallback_models": [
-        "modelscope/Qwen/Qwen3.5-35B-A3B",
-        "openrouter/tencent/hy3-preview:free",
         "deepseek/deepseek-v4-flash"
       ],
       "temperature": 0.4
@@ -334,10 +319,16 @@
 
   "background_task": {
     // 全局默认并发建议调低一点,更加稳妥
-    "defaultConcurrency": 3,
+    "defaultConcurrency": 5,
     // 针对免费模型,最大并发数为1
     "modelConcurrency": {
-      "zhipuai/glm-4.7-flash": 1,
+      // 讯飞星辰MaaS
+      "AstronCodingPlan/astron-code-latest": 2,
+      "AstronCodingPlan/xopglm51": 2,
+      "AstronCodingPlan/xopglm5": 2,
+      "AstronCodingPlan/xopkimik26": 2,
+      "AstronCodingPlan/xopkimik25": 2,
+      "AstronCodingPlan/xopqwen35397b": 2,
 
       "modelscope/ZhipuAI/GLM-5.1": 1,
       "modelscope/ZhipuAI/GLM-5": 1,
@@ -346,32 +337,30 @@
       "modelscope/moonshotai/Kimi-K2.5": 1,
       "modelscope/deepseek-ai/DeepSeek-V4-Flash": 1,
       "modelscope/deepseek-ai/DeepSeek-V4-Pro": 1,
-      "modelscope/deepseek-ai/DeepSeek-R1-Distill-Qwen-32B": 1,
       "modelscope/Qwen/Qwen3-Coder-480B-A35B-Instruct": 1,
       "modelscope/Qwen/Qwen3.5-397B-A17B": 1,
       "modelscope/Qwen/Qwen3.5-122B-A10B": 1,
-      "modelscope/Qwen/Qwen3.5-35B-A3B": 1,
       "modelscope/Qwen/Qwen3-VL-235B-A22B-Instruct": 1,
       "modelscope/inclusionAI/Ling-2.6-1T": 1,
       "modelscope/inclusionAI/Ling-2.6-flash": 1,
-      "openrouter/minimax/minimax-m2.5:free": 1,
-      "openrouter/tencent/hy3-preview:free": 1,
+
       "openrouter/openai/gpt-oss-120b:free": 1,
 
-      "opencode/minimax-m2.5-free": 1,
-      "opencode/hy3-preview-free": 1,
-      "opencode/big-pickle": 1,
-      "opencode/ling-2.6-flash-free": 1
+      "zhipuai/glm-4.7-flash": 1,
+
+      "opencode/big-pickle": 2,
+      "opencode/deepseek-v4-flash-free": 1
     },
     "providerConcurrency": {
       "AstronCodingPlan": 3,
       "modelscope": 2,
-      "zhipuai": 2,
-      "openrouter": 2,
+      "zhipuai": 1,
+      "openrouter": 1,
       "opencode": 2
     },
     "timeoutMs": 120000,
-    "stallTimeoutMs": 60000
+    "stallTimeoutMs": 60000,
+    "messageStaleTimeoutMs": 90000
   },
 
   "team_mode": {
@@ -394,7 +383,16 @@
   // 复杂任务时，默认启用 Prometheus 规划任务
   // Sisyphus 在复杂任务前自动调用 Prometheus 进行战略规划
   "sisyphus_agent": {
-      "planner_enabled": true
+    "disabled": false,
+    "default_builder_enabled": false,
+    "planner_enabled": true,
+    "replace_plan": true
+  },
+
+  // 关闭 git commit 中的 Sisyphus 水印和 Co-authored-by 注入
+  "git_master": {
+    "commit_footer": false,
+    "include_co_authored_by": false
   },
 
   "settings": {
